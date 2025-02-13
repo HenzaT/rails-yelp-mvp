@@ -1,0 +1,23 @@
+<div class="container">
+  <h1>This restaurant is</h1>
+    <ul>
+      <li><%= @restaurant.name %></li>
+      <li><%= @restaurant.address %></li>
+      <li><%= @restaurant.phone_number %></li>
+    </ul>
+
+  <div class="container">
+    <p><strong>Reviews</strong></p>
+    <ul class="list-group">
+      <% @restaurant.reviews.each do |review| %>
+        <li class="list-group-item d-flex justify-content-between align-items-center"><%= review.content %>
+          <%# <span class="badge badge-primary badge-pill"><%= review.rating %></span>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
+    <%= link_to 'Delete this restaurant', restaurant_path(@restaurant), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-warning" %>
+    <%= link_to 'Back to all restaurants', '/restaurants', class: 'btn btn-primary' %>
+    <%= link_to 'Write a review', new_restaurant_review_path(@restaurant) %>
+</div>
